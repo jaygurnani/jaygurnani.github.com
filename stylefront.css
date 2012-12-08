@@ -1,13 +1,17 @@
-@charset "UTF-8";
 /* CSS Document */
 @font-face {
 	font-family: AvenirNextLTPro-Regular;
 	src: url('font/AvenirNextLTPro-Regular.ttf');
 }
 
+@font-face{	
+	font-family: handsean;
+	src: url('font/handsean.ttf');
+}
+
 body {
 	background:#fff;
-	font:14px/20px 'AvenirNextLTPro-Regular','Georgia','Times','Times New Roman',serif;
+	font:14px/20px 'AvenirNextLTPro-Regular','Georgia','Times','Times New Roman';
 	line-height: 1.5;
 	margin: 0;
 	padding: 0;
@@ -16,12 +20,14 @@ body {
 	display:block;
 }
 
+
 #nav {
 	background:#000;
 	width:100%;
 	height:50px;
 	overflow:hidden;
 	clear:both;
+	margin-top:5%;
 }
 	#nav span{
 		float:left;
@@ -57,32 +63,7 @@ body {
 					color:#fff;
 		}
 		
-#content {
-	padding:30 px 0 0;
-}
-	#content .container{
-		min-height:620px;
-	}
-	#content p,
-	#content ul,
-	#content ol,
-	#content blockquote,
-	#content address{
-		margin:0 0 20px;
-		color:#333;
-	}
-	#content h6{
-		margin:0 0 20px;
-		font-size:11px;
-		color:#000;
-		text-transform:uppercase;
-		font-family:'Avenir Next LT W01 Bold', sans-serif;
-		letter-spacing:1px;
-		font-weight:normal;
-	}
-		
-	
-		
+
 .container {
 	width: 960px;
 	margin: 0 auto;
@@ -90,18 +71,7 @@ body {
 	position: relative;
 }
 
-.navigation{
-		padding:15px 0 5px;
-		margin:15px 0;
-		border:1px solid #ddd;
-		border-width:1px 0;
-		float:left;
-		clear:both;
-		width:100%;
-		}
-		.navigation a{
-			max-width:280px !important;
-			overflow:hidden !important;
-			display:inline-block;
-			white-space:nowrap;
-			}
+
+
+			
+			
