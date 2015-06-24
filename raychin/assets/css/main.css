@@ -430,6 +430,7 @@ ul.social-buttons li a:hover, ul.social-buttons li a:focus, ul.social-buttons li
 }
 
 #products {
+	background: #f5f5f5;
 	padding: 60px 0;
 }
 #products H4 {
