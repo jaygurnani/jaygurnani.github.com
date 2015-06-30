@@ -203,24 +203,22 @@ a:before, a:after {
 
 #headerwrap {
 	background: url('../../assets/img/Blue_Grey_People1.jpg') center top;
-	padding-top: 110px;
+	padding-top: 90px;
 	text-align: center;
 	background-attachment: relative;
 	background-position: center center;
-	min-height: 480px;
+	min-height: 380px;
 	width: 100%;
 }
 #headerwrap h1 {
 	color: #ffffff;
 	font-size: 50px;
-	font-weight: 400;
 	text-align: center;
 	letter-spacing: 3px;
 }
 #headerwrap p {
 	color: #fff;
 	font-size: 22px;
-	font-weight: 300;
 	text-align: center;
 	letter-spacing: 1px;
 }
@@ -247,7 +245,7 @@ a:before, a:after {
 }
 #about {
 	background: #fff;
-	padding: 60px 0;
+	padding: 20px 0;
 }
 #about img {
 	margin-top: 65px;
@@ -403,8 +401,8 @@ ul.social-buttons li a:hover, ul.social-buttons li a:focus, ul.social-buttons li
 
 #logo {
 		text-align: center;
-	  height:200px;
-		width:200px;
+	  height:130px;
+		width:130px;
 }
 
 #logoTOP{

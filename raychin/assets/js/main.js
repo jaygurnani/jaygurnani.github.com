@@ -19,9 +19,11 @@ function initialize() {
 $(document).ready(function() {
 
   $("#owl-demo").owlCarousel({
-    items : 4,
+    items : 6,
     lazyLoad : true,
-    navigation : true
+    navigation : true,
+    autoPlay : 3500,
+    stopOnHover : true,
   });
 
 google.maps.event.addDomListener(window, 'load', initialize);
