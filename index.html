@@ -1,32 +1,349 @@
-<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Jay Gurnani: Index</title>
-<link type="text/css" rel="stylesheet" href="stylefront.css">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Jay Gurnani</title>
+    <meta name="description" content="Personal one-page portfolio with spiral parallax, resume, work, blog, and contact." />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        :root{
+            --bg: #0b0d12;
+            --fg: #e8ecf1;
+            --muted: #aeb6c2;
+            --brand: #7aa2ff; /* soft blue */
+            --brand-2: #ff9bd2; /* pink */
+            --brand-3: #7bffca; /* mint */
+            --glass: rgba(16,18,27,0.6);
+            --card: rgba(255,255,255,0.04);
+            --ring: rgba(255,255,255,0.12);
+            --maxw: 1120px;
+            --radius: 18px;
+        }
+        html, body { height: 100%; }
+        html { scroll-behavior: smooth; }
+        body{
+            margin: 0;
+            color: var(--fg);
+            background: radial-gradient(1200px 800px at 10% 5%, rgba(122,162,255,0.08), transparent 40%),
+            radial-gradient(1200px 800px at 90% 10%, rgba(255,155,210,0.08), transparent 45%),
+            radial-gradient(1000px 700px at 50% 100%, rgba(123,255,202,0.07), transparent 50%),
+            var(--bg);
+            font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+            line-height: 1.6;
+            overflow-x: hidden; /* avoid horizontal scroll from parallax */
+        }
+
+        /* ===== Navigation ===== */
+        header{
+            position: sticky; top: 0; z-index: 1000;
+            backdrop-filter: saturate(150%) blur(10px);
+            background: linear-gradient(180deg, rgba(11,13,18,0.7), rgba(11,13,18,0.35));
+            border-bottom: 1px solid var(--ring);
+        }
+        .nav{
+            max-width: var(--maxw);
+            margin: 0 auto;
+            padding: 14px 20px;
+            display: flex; align-items: center; justify-content: space-between;
+            gap: 16px;
+        }
+        .brand{ font-weight: 700; letter-spacing: 0.4px; }
+        nav a{
+            color: var(--fg); text-decoration: none; opacity: 0.9;
+            padding: 8px 12px; border-radius: 999px; transition: opacity .2s, background .2s;
+        }
+        nav a:hover{ opacity: 1; background: var(--card); }
+
+        /* ===== Sections & Layout ===== */
+        .section{ padding: 80px 20px; position: relative; }
+        .container{ max-width: var(--maxw); margin: 0 auto; }
+        .grid{
+            display: grid; gap: 24px; grid-template-columns: repeat(12, 1fr);
+        }
+        .card{
+            background: var(--card);
+            border: 1px solid var(--ring);
+            border-radius: var(--radius);
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+        }
+
+        /* ===== Hero ===== */
+        .hero{
+            display: grid; gap: 32px; align-items: center;
+            grid-template-columns: 1.1fr 1fr;
+        }
+        .avatar-wrap{
+            display: grid; place-items: center;
+        }
+        .avatar{
+            width: clamp(160px, 35vw, 280px);
+            height: clamp(160px, 35vw, 280px);
+            border-radius: 50%;
+            object-fit: cover; object-position: center;
+            border: 2px solid var(--ring);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.38), 0 0 0 12px rgba(122,162,255,0.08);
+            background: radial-gradient(circle at 30% 35%, rgba(255,255,255,0.06), transparent 40%), #0f131a;
+        }
+        .hero h1{ font-size: clamp(28px, 4vw, 48px); line-height: 1.15; margin: 0 0 8px; }
+        .hero p{ color: var(--muted); margin: 0 0 18px; }
+        .cta{
+            display: flex; gap: 12px; flex-wrap: wrap; margin-top: 10px;
+        }
+        .btn{
+            appearance: none; border: 1px solid var(--ring); border-radius: 12px;
+            padding: 10px 14px; background: var(--card); color: var(--fg); cursor: pointer; text-decoration: none;
+            transition: transform .12s ease, background .2s;
+        }
+        .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,0.06); }
+
+        /* ===== Content blocks ===== */
+        .two-col{ grid-column: span 12; display: grid; grid-template-columns: 1fr; gap: 24px; }
+        @media (min-width: 900px){ .two-col{ grid-template-columns: 1fr 1fr; } }
+
+        .work-grid{ grid-column: span 12; display: grid; grid-template-columns: repeat(1, 1fr); gap: 16px; }
+        @media (min-width: 700px){ .work-grid{ grid-template-columns: repeat(2, 1fr); } }
+        @media (min-width: 1100px){ .work-grid{ grid-template-columns: repeat(3, 1fr); } }
+
+        .work-card h3{ margin: 0 0 6px; font-size: 18px; }
+        .work-card p{ margin: 0 0 10px; color: var(--muted); font-size: 14px; }
+        .work-card a{ color: var(--brand); text-decoration: none; }
+
+        .blog-list{ grid-column: span 12; display: grid; gap: 12px; }
+        .blog-item{ display: flex; align-items: baseline; gap: 12px; }
+        .blog-item time{ color: var(--muted); font-variant-numeric: tabular-nums; }
+
+        .contact{
+            display: grid; gap: 14px;
+        }
+        .contact a{ color: var(--brand-3); text-decoration: none; }
+
+        footer{
+            padding: 40px 20px; color: var(--muted); text-align: center; border-top: 1px solid var(--ring);
+            background: linear-gradient(0deg, rgba(11,13,18,0.6), rgba(11,13,18,0));
+        }
+
+        /* ===== Spiral Parallax ===== */
+        .spiral-stage{
+            position: fixed; inset: 0; pointer-events: none; z-index: 0;
+            opacity: 0.9;
+        }
+        .spiral{ position: absolute; will-change: transform; filter: drop-shadow(0 6px 18px rgba(0,0,0,0.35)); }
+        .spiral svg{ display: block; opacity: 0.18; }
+        .spiral .stroke-1{ stroke: var(--brand); }
+        .spiral .stroke-2{ stroke: var(--brand-2); }
+        .spiral .stroke-3{ stroke: var(--brand-3); }
+
+        /* Reduce motion accessibility */
+        @media (prefers-reduced-motion: reduce){
+            html { scroll-behavior: auto; }
+            .spiral-stage{ display: none; }
+        }
+
+        /* Elevation for content above parallax */
+        main, header, footer{ position: relative; z-index: 1; }
+    </style>
 </head>
+<body>
+<div class="spiral-stage" aria-hidden="true">
+    <!-- Spirals are generated with JS; these wrappers define placement & speed -->
+    <div class="spiral" data-speed="0.15" data-rotate="0.02" style="left:-120px; top: -60px; width: 560px; height: 560px;"></div>
+    <div class="spiral" data-speed="0.35" data-rotate="-0.03" style="right:-180px; top: 240px; width: 720px; height: 720px;"></div>
+    <div class="spiral" data-speed="0.65" data-rotate="0.05" style="left: 40%; bottom:-260px; width: 900px; height: 900px; transform: translateX(-50%);"></div>
+</div>
 
-<body class = "main">
-	<div align="center">
-		<p style="font:60px/20px 'handsean';">Hello!</p>
-		<img height="330px" style="border-radius: 50%;" src="images/me.jpg" />
-		<p style = "font:40px/0px 'handsean';">My name is Jay Gurnani and this is my website.</p>
-	</div>
-	<div id = "nav">
-		<div class = "container">
-			<ul>
-				<li class = "about">
-					<a href="about.html">About</a>
-					<a href="portfolio.html">Portfolio</a>
-					<a href="https://www.mixcloud.com/jay-gurnani/">DJ</a>
-					<a href="https://medium.com/@jay.gurnani">Blog</a>
-					<a href="https://github.com/jaygurnani">GitHub</a>
-				</li>
-			</ul>
-			<span><a href="index.html">Jay Umesh Gurnani</a></span>
-		</div>
-	</div>	
+<header>
+    <div class="nav">
+        <div class="brand">Jay Gurnani</div>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#resume">Resume</a>
+            <a href="#work">Portfolio</a>
+            <a href="https://www.mixcloud.com/jay-gurnani/">DJ</a>
+            <a href="https://medium.com/@jay.gurnani">Blog</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </div>
+</header>
 
+<main>
+    <!-- Home / Hero -->
+    <section id="home" class="section">
+        <div class="container hero">
+            <div>
+                <h1>Hi, I'm <span style="color:var(--brand)">Jay Gurnani</span> 👋</h1>
+                <p>Engineer • Builder • Writer • DJ</p>
+                <div class="cta">
+                    <a class="btn" href="#resume">View Resume</a>
+                    <a class="btn" href="#work">See my work</a>
+                    <a class="btn" href="https://www.mixcloud.com/jay-gurnani/">Listen to my mixtapes</a>
+                    <a class="btn" href="https://medium.com/@jay.gurnani">Read my blog</a>
+                    <a class="btn" href="#contact">Get in touch</a>
+                </div>
+            </div>
+            <div class="avatar-wrap">
+                <!-- Replace avatar.jpg with your own photo file name -->
+                <img class="avatar" src="images/me.jpg" alt="Portrait of Jay Gurnani" onerror="this.src='data:image/svg+xml;utf8,<?xml version=\'1.0\' encoding=\'UTF-8\'?><svg xmlns=\'http://www.w3.org/2000/svg\' width=\'512\' height=\'512\' viewBox=\'0 0 512 512\'><defs><linearGradient id=\'g\' x1=\'0\' y1=\'0\' x2=\'1\' y2=\'1\'><stop stop-color=\'%23101a2b\'/><stop offset=\'1\' stop-color=\'%23131c2e\'/></linearGradient></defs><rect width=\'512\' height=\'512\' fill=\'url(%23g)\'/><circle cx=\'256\' cy=\'200\' r=\'90\' fill=\'%23344358\'/><path d=\'M92 410c22-76 92-120 164-120s142 44 164 120H92z\' fill=\'%23344358\'/></svg>'" />
+            </div>
+        </div>
+    </section>
 
+    <!-- Resume -->
+    <section id="resume" class="section">
+        <div class="container grid">
+            <div class="two-col">
+                <div class="card">
+                    <h2>Resume</h2>
+                    <p>Trilingual engineering team lead with 13 years of professional programming experience and 1.5+ years of engineering management experience.</p>
+                    <p>
+                        <a class="btn" href="docs/JayGurnaniResume.pdf" target="_blank" rel="noopener"><i class="fa-solid fa-file-pdf"></i>Download PDF</a>
+                    </p>
+                </div>
+                <div class="card">
+                    <h2>Highlights</h2>
+                    <ul>
+                        <li>⚡ Developer for 143 global video quality metric used by 130+ SREs</li>
+                        <li>🧠 Engineering team lead for 10 engineers. Handled £4.3 billion in sales annually</li>
+                        <li>🤝 0 to 8000 DAU for a single feature</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Work -->
+    <section id="work" class="section">
+        <div class="container grid">
+            <h2 style="grid-column: span 12; margin: 0 0 8px;">Selected Work</h2>
+            <div class="work-grid">
+                <article class="card work-card">
+                    <h3><i class="fa-brands fa-tiktok"></i> TikTok: VQoS</h3>
+                    <p>Video Quality Platform reports on 8 billion videos per hour across multiple geos using Clickhouse & Kafka</p>
+                </article>
+                <article class="card work-card">
+                    <h3>Trainline: Ecommerce</h3>
+                    <p>Ecommerce team was in charge of handling £4.3 billion in sales annually for Trainline</p>
+                    <a href="https://www.thetrainline.com/en-us" target="_blank" rel="noopener">View project →</a>
+                </article>
+                <article class="card work-card">
+                    <h3><i class="fa-brands fa-atlassian"></i> Atlassian: Compass</h3>
+                    <p>Compass, the internal developer platform from Atlassian to improve your developer experience, catalog all services, and increase software health</p>
+                    <a href="https://www.atlassian.com/software/compass" target="_blank" rel="noopener">View project →</a>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section">
+        <div class="container grid">
+            <div class="card" style="grid-column: span 12;">
+                <h2>Contact</h2>
+                <div class="contact">
+                    <div><i class="fa-solid fa-envelope"></i> Email: <a href="mailto:jay.gurnani@gmail.com?Subject=Contacting%20you">Click here</a></div>
+                    <div><i class="fa-brands fa-tiktok"></i> LinkedIn: <a href="https://www.linkedin.com/in/jay-gurnani" target="_blank" rel="noopener">https://www.linkedin.com/in/jay-gurnani/</a></div>
+                    <div><i class="fa-brands fa-github"></i> GitHub: <a href="https://github.com/jaygurnani" target="_blank" rel="noopener">https://github.com/jaygurnani</a></div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="container">© <span id="year"></span> Jay Gurnani. All rights reserved.</div>
+</footer>
+
+<script>
+    (function(){
+        // Set current year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Spiral generator (Archimedean)
+        function makeSpiralSVG(size, strokeClass){
+            const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            svg.setAttribute('width', size);
+            svg.setAttribute('height', size);
+            svg.setAttribute('viewBox', '0 0 ' + size + ' ' + size);
+            const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            path.setAttribute('fill', 'none');
+            path.setAttribute('stroke-width', 2.2);
+            path.setAttribute('class', strokeClass);
+            path.setAttribute('vector-effect', 'non-scaling-stroke');
+            path.setAttribute('d', spiralPath({
+                size,
+                turns: 5.6,
+                points: 1400,
+                spacing: (size/ (2*Math.PI*5.6)) * 0.92 // keep within viewbox
+            }));
+            svg.appendChild(path);
+            return svg;
+        }
+
+        function spiralPath({size=800, turns=6, points=1200, spacing=6.5}){
+            const cx = size/2, cy = size/2;
+            const maxTheta = Math.PI * 2 * turns;
+            const step = maxTheta / points;
+            let d = '';
+            for(let i=0;i<=points;i++){
+                const theta = i * step;
+                const r = spacing * theta;
+                const x = cx + r * Math.cos(theta);
+                const y = cy + r * Math.sin(theta);
+                d += (i===0 ? 'M' : 'L') + x.toFixed(2) + ' ' + y.toFixed(2) + ' ';
+            }
+            return d;
+        }
+
+        // Mount three differently styled spirals
+        const wrappers = document.querySelectorAll('.spiral-stage .spiral');
+        const strokes = ['stroke-1','stroke-2','stroke-3'];
+        wrappers.forEach((wrap, i)=>{
+            const size = Math.max(wrap.clientWidth, wrap.clientHeight);
+            const svg = makeSpiralSVG(size, strokes[i % strokes.length]);
+            wrap.appendChild(svg);
+        });
+
+        // Parallax
+        const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if(!prefersReduced){
+            let ticking = false;
+            const items = Array.from(wrappers).map(el=>({
+                el,
+                speed: parseFloat(el.dataset.speed || '0.3'),
+                rotF: parseFloat(el.dataset.rotate || '0.0'),
+                baseY: el.offsetTop
+            }));
+
+            function onScroll(){
+                if(!ticking){
+                    window.requestAnimationFrame(update);
+                    ticking = true;
+                }
+            }
+            function update(){
+                const y = window.scrollY || window.pageYOffset;
+                for(const it of items){
+                    const ty = y * it.speed;
+                    const rot = y * it.rotF;
+                    it.el.style.transform = `translate3d(0, ${ty.toFixed(1)}px, 0) rotate(${rot.toFixed(2)}deg)`;
+                }
+                ticking = false;
+            }
+            window.addEventListener('scroll', onScroll, {passive:true});
+            update();
+            window.addEventListener('resize', ()=>{
+                // Regenerate SVGs on major resize for crispness
+                wrappers.forEach((wrap)=>{
+                    wrap.innerHTML='';
+                    const size = Math.max(wrap.clientWidth, wrap.clientHeight);
+                    const svg = makeSpiralSVG(size, strokes[Math.floor(Math.random()*strokes.length)]);
+                    wrap.appendChild(svg);
+                });
+            });
+        }
+    })();
+</script>
 </body>
 </html>
